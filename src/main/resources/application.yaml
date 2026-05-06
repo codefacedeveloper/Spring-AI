@@ -1,13 +1,43 @@
 spring:
   application:
     name: spring-ai
+  datasource:
+    url: jdbc:postgresql://localhost:5432/aira
+    username: gokuls
+    passsword: lakshmi12#$
   ai:
     openai:
       api-key: ${OPENAI_API_KEY}
       chat:
         options:
-          model: gpt-4o-mini
+          model: gpt-3.5-turbo
+    ollama:
+        base-url: http://localhost:11434/
+        chat:
+          options:
+           model: llama3.2:3b
+    chat:
+      client:
+       enable: false
+      memory:
+        repository: jdbc
+        jdbc:
+            initialize-schema: ALWAYS
+
 
 server:
   port: 8081
+
+logging:
+  level:
+    org:
+      springframework:
+        ai: DEBUG
+#          chat:
+#            client:
+#              advisor: DEBUG
+#            memory:
+#              repository:
+#                jdbc: DEBUG
+
 
